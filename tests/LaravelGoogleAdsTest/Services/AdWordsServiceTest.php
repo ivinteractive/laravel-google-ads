@@ -32,19 +32,19 @@ namespace LaravelGoogleAdsTest\Services
     use Google\AdsApi\Common\Configuration;
     use Google\Auth\Credentials\UserRefreshCredentials;
     use LaravelGoogleAds\Services\AdWordsService;
-    use PHPUnit_Framework_TestCase;
+    use PHPUnit\Framework\TestCase;
     use ReflectionClass;
     use ReflectionException;
     use ReflectionMethod;
 
-    class AdWordsServiceTest extends PHPUnit_Framework_TestCase
+    class AdWordsServiceTest extends TestCase
     {
         // @codingStandardsIgnoreEnd
 
         /** @var AdWordsService */
         protected $service;
 
-        public function setUp()
+        public function setUp() : void
         {
             $this->service = new AdWordsService();
         }
@@ -116,7 +116,8 @@ namespace LaravelGoogleAdsTest\Services
         {
             $service = 'InvalidServiceClass';
 
-            $this->setExpectedException(ReflectionException::class,
+            $this->expectException(ReflectionException::class);
+            $this->expectExceptionMessage(
                 sprintf(
                     'Class %s does not exist',
                     $service
